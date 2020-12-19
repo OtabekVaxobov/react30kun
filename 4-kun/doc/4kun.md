@@ -1,5 +1,5 @@
 ---
-kun: 5
+kun: 4
 sarlovha: Kompleks komponentalar
 ---
 

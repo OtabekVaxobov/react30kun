@@ -1,5 +1,5 @@
 ---
-kun: 3
+kun: 4
 sarlovha: Bizning birinchi komponentlarimiz
 ---
 
