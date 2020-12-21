@@ -205,3 +205,29 @@ Keyinchalik, ushbu yangi tarkibni qattiq kod(hard-code) o'rniga tayanch sifatida
 ```
 
 Ajoyib, endi biz ob'ektni boshqaradigan(driven) faoliyat elementiga egamiz. Ammo, siz buni bir necha bor turli xil sharhlar bilan amalga oshirishimiz kerakligini sezgan bo'lishingiz mumkin. Buning o'rniga biz bir qator ob'ektlarni tarkibiy qismga o'tkaza olamiz.
+
+Aytaylik, bizda bir nechta faoliyat elementlarini o'z ichiga olgan ob'ekt mavjud:
+
+```javascript
+/*bu obyekt*/
+const activities = [
+  {
+    timestamp: new Date().getTime(),
+    text: "Ate lunch",
+    user: {
+      id: 1, name: 'Nate',
+      avatar: "http://www.croop.cl/UI/twitter/images/doug.jpg"
+    },
+    comments: [{ from: 'Ari', text: 'Me too!' }]
+  },
+  {
+    timestamp: new Date().getTime(),
+    text: "Woke up early for a beautiful run",
+    user: {
+      id: 2, name: 'Ari',
+      avatar: "http://www.croop.cl/UI/twitter/images/doug.jpg"
+    },
+    comments: [{ from: 'Nate', text: 'I am so jealous' }]
+  },
+]
+```
