@@ -343,3 +343,5 @@ class ActivityItem extends React.Component {
 }
 ```
 Ushbu hafta biz React `props` kontseptsiyasidan foydalangan holda tarkibiy qismlarimizni ma'lumotlarga asoslangan holda yangiladik. Keyingi bo'limda biz aniq tarkibiy qismlarga sho'ng'iymiz.
+
+https://github.com/OtabekVaxobov/react30kun/tree/master/5-kun
