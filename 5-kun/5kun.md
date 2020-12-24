@@ -231,3 +231,115 @@ const activities = [
   },
 ]
 ```
+
+Biz `<Content />` ga faqat bitta sifat o'rnatish o'rniga bir nechta sifat o'rnatdik:
+
+```javascript
+/*hozir Content komponentasida activiti yorlog'i sifatida butun obyekt o'rnatilayapti
+*/
+<Content activities={activities} />
+```
+Ammo, agar biz ko'rinishni yangilasak, hech narsa ko'rinmaydi! Bir nechta yangiliklarni qabul qilish uchun avval `Content` komponentini yangilashimiz kerak. Avvalroq bilib olganimizdek, JSX brauzer tomonidan chindan ham faqatgina oddiy JavaScript-ni bajaradi. Biz JavaScript-ni JSX tarkibida bajarishimiz mumkin, chunki u bizning boshqa JavaScript-larimiz kabi brauzer tomonidan boshqariladi.
+
+Faoliyat elementimiz(activity item) JSX-ni har bir element uchun bajaradigan `map` funktsiyasi funktsiyasining ichiga o'tkazamiz.
+
+```javascript
+
+/*code/contnent3.jsx*/
+class Content extends React.Component {
+  render() {
+    const {activities} = this.props; // ES6 destructuring
+
+    return (
+      <div className="content">
+        <div className="line"></div>
+
+        {/* Timeline item */}
+        {activities.map((activity) => {
+          return (
+            <div className="item">
+              <div className="avatar">
+                <img
+                  alt={activity.text}
+                  src={activity.user.avatar} />
+                {activity.user.name}
+              </div>
+
+              <span className="time">
+                {activity.timestamp}
+              </span>
+              <p>{activity.text}</p>
+              <div className="commentCount">
+                {activity.comments.length}
+              </div>
+            </div>
+          );
+        })}
+
+      </div>
+    )
+  }
+}
+```
+Endi biz o'zimizning qatorimizga har qanday harakatlarni o'tkaza olamiz va `Content komponentasi uni boshqaradi, ammo agar biz hozirda komponentni tark etsak, unda biz faoliyat ro'yxatini o'z ichiga olgan va ko'rsatadigan nisbatan murakkab komponentga ega bo'lamiz. Buni shunday qoldirish, albatta, React usuli emas.
+
+## ActivityItem(faoliyat elementi)
+
+Bu erda bitta faoliyat elementini ko'rsatishni o'z ichiga olgan yana bir komponentni yozish mantiqan to'g'ri keladi, so'ngra murakkab `Content` komponentini yaratish o'rniga biz qulaylik**responsibility**ni oshiramiz. Bu shuningdek, testlarni, funksionallikni qo'shishni va boshqalarni osonlashtiradi.
+
+`ActivityItem` tarkibiy qismlarining ro'yxatini ko'rsatish uchun `Content` komponentini yangilaymiz.
+
+```javascript
+
+/*code/content4.jsx*/
+class Content extends React.Component {
+  render() {
+    const {activities} = this.props; // ES6 destructuring
+
+    return (
+      <div className="content">
+        <div className="line"></div>
+
+        {/* Timeline item */}
+        {activities.map((activity) => (
+          <ActivityItem
+            activity={activity} />
+        ))}
+
+      </div>
+    )
+  }
+}
+```
+Bu nafaqat sodda va tushunarli, balki ikkala komponentni sinovdan o'tkazishni osonlashtiradi.
+
+Bizning yangi yozilgan `Contnent` komponenti bilan `ActivityItem` komponentini yarataylik. Bizda `ActivityItem` uchun yaratilgan ko'rinishga ega bo'lganligi sababli, uni `Content` komponentining shablonidan nusxasini o'z moduli sifatida nusxalashimiz kerak.
+
+```javascript
+/*code/activity_item.jsx*/
+class ActivityItem extends React.Component {
+  render() {
+    const {activity} = this.props; // ES6 destructuring
+
+    return (
+      <div className="item">
+        <div className="avatar">
+          <img
+            alt={activity.text}
+            src={activity.user.avatar} />
+          {activity.user.name}
+        </div>
+
+        <span className="time">
+          {activity.timestamp}
+        </span>
+        <p>{activity.text}</p>
+        <div className="commentCount">
+          {activity.comments.length}
+        </div>
+      </div>
+    )
+  }
+}
+```
+Ushbu hafta biz React `props` kontseptsiyasidan foydalangan holda tarkibiy qismlarimizni ma'lumotlarga asoslangan holda yangiladik. Keyingi bo'limda biz aniq tarkibiy qismlarga sho'ng'iymiz.
